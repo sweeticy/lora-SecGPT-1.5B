@@ -1,0 +1,5 @@
+logs/
+lora_secgpt_weights/
+lora_secgpt_results/
+merged_secgpt_model/
+models/clouditera_SecGPT-1.5B/
