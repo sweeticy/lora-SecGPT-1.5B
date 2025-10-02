@@ -19,6 +19,9 @@ python -m vllm.entrypoints.openai.api_server \
   --gpu-memory-utilization 0.9 \
   --dtype bfloat16
 '''
+## 测试启动的模型
+python models/test_llm_start.py
+
 ## 查看运行的进程
 ps aux | grep "vllm.entrypoints.openai.api_server"
 ps aux | grep "python -m vllm"

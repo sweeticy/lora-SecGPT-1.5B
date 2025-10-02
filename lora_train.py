@@ -12,7 +12,7 @@ import torch
 # 1. 加载模型和分词器
 model_path = "models/clouditera_SecGPT-1.5B"
 # 量化加载模型（节省显存，适合消费级GPU）
-model = AutoModelForCausalLM.from_pretrained(
+model = AutoModelForCausalLM.from_pretrained(   # 因果语言类模型
     model_path,
     load_in_4bit=True,  # 4bit量化:将模型权重从默认的 32 位或 16 位精度压缩到 4 位
     device_map="auto",  #模型太大无法完全放入单张 GPU 时，会自动将部分层分配到 CPU 或其他 GPU,使用device_map={"": 0}表示强制使用编号为 0 的 GPU
@@ -86,7 +86,7 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_dataset,
-    data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+    data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)   #mlm=False：禁用 “掩码语言建模（MLM）”，启用 “因果语言建模（CLM）”
 )
 
 print("开始训练...")
